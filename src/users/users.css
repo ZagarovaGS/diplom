@@ -1,0 +1,29 @@
+
+body{
+    background-color:lightblue ;
+}
+#countResult{
+    color: maroon;
+    font-size: 20px;
+    display: inline-block;
+    margin: 10px 
+}
+#userTable{
+    background-color: lightseagreen;
+    padding: 5px;
+    max-width: 1200px;
+    font-weight: 500;
+}
+.deleteBtn{
+    background-color: maroon;
+    color:  lightseagreen;
+    font-size: 15px;
+}
+.tableHeader{
+    color: maroon;
+    font-size: 20px;
+}
+.active
+    hover {
+    background-color: grey;
+}
