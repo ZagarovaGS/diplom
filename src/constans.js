@@ -1,3 +1,4 @@
+export const ROOT_NODE = document.getElementById("page");
 export const INVALID_CLASS = "invalid";
 export const user = [
 
@@ -112,6 +113,6 @@ export const user = [
   }
   ];
   
-  export const ROOT_NODE = document.getElementById("page");
+  
   
 
