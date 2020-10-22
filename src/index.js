@@ -1,12 +1,10 @@
 
 import {initForm} from "./form/form.js";
 import "./assets/style/form.scss";
-import {initUsers} from "./users/user.js";
+import {initUsers} from "./users/user";
 import "./assets/style/users.scss";
-import {initServerList} from "./server_list/server_list.js";
-//initServerList вроде здесь нет необходимости вызывать
-initServerList();
-//import {initRouter} from "./router";
+import {initRouter} from "./form/router";
+initRouter();
 initForm();
 
 initUsers();

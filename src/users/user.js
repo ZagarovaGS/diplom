@@ -1,19 +1,20 @@
 
 import { ROOT_NODE } from "../constans.js";
-import {initServerList} from "./server_list/server_list.js"
-initServerList();
-const user = character;
-//import {user} from "../constans.js";
+
+
+import {user} from "../constans.js";
 const template = `
 <div id = "countResult"></div>
 <table id = "userTable"></table>`
+
+
 
 export function initUsers(){
 ROOT_NODE.innerHTML = template;
 let deleteBtn = document.createElement("button");
 const div = document.getElementById("countResult");
 
-function countMale(){
+function countMale(user){
     let countM = 0;
 for(let i = 0; i < user.length; i++) {
     if (user[i].gender === "male"){
@@ -24,7 +25,7 @@ return countM;
 }
 
 
-function countFamale(){
+function countFamale(user){
     let countF = 0
     for(let i = 0; i < user.length; i++) {
        
@@ -36,14 +37,10 @@ function countFamale(){
     }
 
 
-countMale(user);
-countFamale(user);
-const males = countMale(user);
-const famale = countFamale(user);
 
 
 
-function maxBalance(){
+function maxBalance(user){
     let maxCount = 0;
     for (const {balance} of user) {
     const convertBalance = Number(balance.replace(/\$|\,/g,""));
@@ -53,14 +50,10 @@ function maxBalance(){
 }
 return maxCount;
 }
-maxBalance(user);
-const maxCountBalance = maxBalance(user);
-const countMax = maxBalance(user);
-div.innerText = `Количество мужчин ${males} 
-Количество женщин ${famale}
-Максимальный баланс ${maxCountBalance}`;
 
 
+
+function createUserTable(user){
 const userTable = document.getElementById("userTable");
 const header = document.createElement("tr");
 
@@ -98,7 +91,7 @@ for(let i = 0; i < user.length; i++) {
     let email = user[i].email;
     let phone = user[i].phone;
     let balance = user[i].balance;
-     deleteBtn = user[i].deleteBtn;
+    deleteBtn = user[i].deleteBtn;
 
     
 
@@ -150,7 +143,33 @@ for(let i = 0; i < user.length; i++) {
 
 userTable.appendChild(tr);
 
-}
-return (userTable);
+};
+
+};
+
+
+
+const url = `https://gist.githubusercontent.com/oDASCo/3f4014d24dc79e1e29b58bfa96afaa1b/raw/677516ee3bd278f7e3d805108596ca431d00b629/db.json`;
+    
+   const character = fetch(url)
+   .then((response) => {
+       return response.json();
+   
+   })
+   .then((user) => {
+    createUserTable(user);
+    const maxCountBalance = maxBalance(user);
+    const males = countMale(user);
+    const famale = countFamale(user);
+    div.innerText = `Количество мужчин ${males} 
+    Количество женщин ${famale}
+    Максимальный баланс ${maxCountBalance}`;   
+       
+   })
+   .catch((error) => {
+       console.log(error);
+       ROOT_NODE.innerHTML = "<div>Sorry, the connection is lost. Please, try again</div>"
+   });
+
 };
 
